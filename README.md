@@ -1,3 +1,15 @@
+title: Stable Diffusion Reference Only
+emoji:🔥
+colorFrom: indigo
+colorTo: pink
+sdk: gradio
+sdk_version: 3.1.4
+app_file: app.py
+pinned: false
+license: apache-2.0
+models:
+- AisingioroHao0/stable-diffusion-reference-only-automatic-coloring-0.1.2
+
 # StableDiffusionReferenceOnly
 
 A general model for secondary creation.
@@ -6,11 +18,7 @@ No training is needed to achieve style transfer of any anime character and line 
 
 Code: https://github.com/aihao2000/StableDiffusionReferenceOnly
 
-
-
 Model: https://huggingface.co/AisingioroHao0/stable-diffusion-reference-only-automatic-coloring-0.1.2
-
-
 
 |               prompt                |               blueprint                |               result                |
 | :---------------------------------: | :------------------------------------: | :---------------------------------: |
@@ -38,7 +46,7 @@ You can also directly upload two color character pictures to try ```style transf
 
 一是提示图像。 它是您希望迁移到新图像的参考图像。 我们提供了角色分割```character segment```功能来清除背景，这往往会带来更好的效果。
 
-另一种是蓝图图像。 它将控制新图片的图片结构。还建议使用```character segment```来增强效果。 还有另外两个按钮。 如果您输入的图纸是手动画线，则只需点击```color inversion```按钮即可保证黑底白线。 如果您要输入另一个角色的彩色图像，则需要单击“获取线条艺术”按钮，然后单击```color inversion```按钮。 然后点击```inference```按钮即可得到结果。
+另一种是蓝图图像。 它将控制新图片的图片结构。还建议使用```character segment```来增强效果。 还有另外两个按钮。 如果您输入的图纸是人工线稿，则只需点击```color inversion```按钮即可保证黑底白线。 如果您要输入另一个角色的彩色图像，则需要单击```get line art```按钮，然后单击```color inversion```按钮。 然后点击```inference```按钮即可得到结果。
 
 
 
@@ -46,4 +54,7 @@ You can also directly upload two color character pictures to try ```style transf
 
 也可以直接上传两张彩色人物图片来试试风格迁移```style transfer```。
 
-## 
+## meta data
+
+
+
