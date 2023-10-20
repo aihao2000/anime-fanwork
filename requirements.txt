@@ -1,3 +1,3 @@
-git+https://github.com/aihao2000/StableDiffusionReferenceOnly.git
-git+https://github.com/aihao2000/anime_segmentation.git
+git+https://github.com/aihao2000/stable-diffusion-reference-only.git
+git+https://github.com/aihao2000/anime-segmentation.git
 accelerate
