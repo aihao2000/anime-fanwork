@@ -1,2 +1,3 @@
 git+https://github.com/aihao2000/StableDiffusionReferenceOnly.git
 git+https://github.com/aihao2000/anime_segmentation.git
+accelerate
