@@ -1,5 +1,5 @@
 ---
-title: Anime Remix
+title: Anime Fanwork
 emoji: ✏️
 colorFrom: yellow
 colorTo: gray
