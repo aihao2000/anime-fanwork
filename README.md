@@ -1,6 +1,6 @@
 ---
 title: Anime Fanwork
-emoji: 🖌️🖼️
+emoji: ✏️
 colorFrom: yellow
 colorTo: gray
 sdk: gradio
