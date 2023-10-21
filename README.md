@@ -1,6 +1,6 @@
 ---
-title: Stable Diffusion Reference Only
-emoji: 🔥
+title: Anime Remix
+emoji: ✏️
 colorFrom: yellow
 colorTo: gray
 sdk: gradio
