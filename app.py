@@ -86,7 +86,7 @@ with gr.Blocks() as demo:
     gr.Markdown(
         """
     # Stable Diffusion Reference Only Automatic Coloring 0.1.2\n\n
-    demo for [https://github.com/aihao2000/StableDiffusionReferenceOnly](https://github.com/aihao2000/StableDiffusionReferenceOnly)
+    demo for [https://github.com/aihao2000/stable-diffusion-referenceonly](https://github.com/aihao2000/stable-diffusion-referenceonly)
     """
     )
     with gr.Row():
