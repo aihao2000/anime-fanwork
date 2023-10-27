@@ -10,16 +10,17 @@ import cv2
 import numpy as np
 import os
 
+device = "cpu"
 automatic_coloring_pipeline = StableDiffusionReferenceOnlyPipeline.from_pretrained(
     "AisingioroHao0/stable-diffusion-reference-only-automatic-coloring-0.1.2"
-)
+).to(device)
 automatic_coloring_pipeline.scheduler = UniPCMultistepScheduler.from_config(
     automatic_coloring_pipeline.scheduler.config
 )
 
 segment_model = anime_segmentation.get_model(
     model_path=huggingface_hub.hf_hub_download("skytnt/anime-seg", "isnetis.ckpt")
-)
+).to(device)
 
 
 def character_segment(img):
