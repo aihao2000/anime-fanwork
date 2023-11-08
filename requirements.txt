@@ -1,3 +1,5 @@
+accelerate
+diffusers=0.21.0
 git+https://github.com/aihao2000/stable-diffusion-reference-only.git
 git+https://github.com/aihao2000/anime-segmentation.git
-accelerate
+
