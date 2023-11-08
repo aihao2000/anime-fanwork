@@ -3,7 +3,8 @@ import gradio as gr
 from stable_diffusion_reference_only.pipelines.stable_diffusion_reference_only_pipeline import (
     StableDiffusionReferenceOnlyPipeline,
 )
-import anime_segmentation
+from anime_segmentation import get_model as get_anime_segmentation_model
+from anime_segmentation import character_segment as anime_character_segment
 from diffusers.schedulers import UniPCMultistepScheduler
 from PIL import Image
 import cv2
@@ -12,7 +13,9 @@ import os
 import torch
 
 if __name__ == "__main__":
+    
     print(f"Is CUDA available: {torch.cuda.is_available()}")
+    print(f"CUDA device: {torch.cuda.get_device_name(torch.cuda.current_device())}")
     if torch.cuda.is_available():
         device = "cuda"
     else:
@@ -25,14 +28,14 @@ if __name__ == "__main__":
         automatic_coloring_pipeline.scheduler.config
     )
 
-    segment_model = anime_segmentation.get_model(
+    segment_model = get_anime_segmentation_model(
         model_path=huggingface_hub.hf_hub_download("skytnt/anime-seg", "isnetis.ckpt")
     ).to(device)
 
     def character_segment(img):
         if img is None:
             return None
-        img = anime_segmentation.character_segment(segment_model, img)
+        img = anime_character_segment(segment_model, img)
         img = cv2.cvtColor(img, cv2.COLOR_RGBA2RGB)
         return img
 
