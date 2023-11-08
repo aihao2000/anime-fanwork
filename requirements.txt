@@ -1,5 +1,7 @@
 accelerate
 diffusers==0.21.0
+--extra-index-url https://download.pytorch.org/whl/cu113
+torch
 git+https://github.com/aihao2000/stable-diffusion-reference-only.git
 git+https://github.com/aihao2000/anime-segmentation.git
 
