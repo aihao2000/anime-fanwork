@@ -11,83 +11,80 @@ import numpy as np
 import os
 import torch
 
-print(f"Is CUDA available: {torch.cuda.is_available()}")
-if torch.cuda.is_available():
-    device = "cuda"
-else:
-    device = "cpu"
-
-automatic_coloring_pipeline = StableDiffusionReferenceOnlyPipeline.from_pretrained(
-    "AisingioroHao0/stable-diffusion-reference-only-automatic-coloring-0.1.2"
-).to(device)
-automatic_coloring_pipeline.scheduler = UniPCMultistepScheduler.from_config(
-    automatic_coloring_pipeline.scheduler.config
-)
-
-segment_model = anime_segmentation.get_model(
-    model_path=huggingface_hub.hf_hub_download("skytnt/anime-seg", "isnetis.ckpt")
-).to(device)
-
-
-def character_segment(img):
-    if img is None:
-        return None
-    img = anime_segmentation.character_segment(segment_model, img)
-    img = cv2.cvtColor(img, cv2.COLOR_RGBA2RGB)
-    return img
-
-
-def color_inversion(img):
-    if img is None:
-        return None
-    return 255 - img
-
-
-def get_line_art(img):
-    if img is None:
-        return None
-    img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-    img = cv2.adaptiveThreshold(
-        img,
-        255,
-        cv2.ADAPTIVE_THRESH_MEAN_C,
-        cv2.THRESH_BINARY,
-        blockSize=5,
-        C=7,
-    )
-    img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
-    return img
-
-
-def inference(prompt, blueprint, num_inference_steps):
-    if prompt is None or blueprint is None:
-        return None
-    return np.array(
-        automatic_coloring_pipeline(
-            prompt=Image.fromarray(prompt),
-            blueprint=Image.fromarray(blueprint),
-            num_inference_steps=num_inference_steps,
-        ).images[0]
-    )
-
-
-def automatic_coloring(prompt, blueprint, num_inference_steps):
-    if prompt is None or blueprint is None:
-        return None
-    blueprint = color_inversion(blueprint)
-    return inference(prompt, blueprint, num_inference_steps)
-
-
-def style_transfer(prompt, blueprint, num_inference_steps):
-    if prompt is None or blueprint is None:
-        return None
-    prompt = character_segment(prompt)
-    blueprint = character_segment(blueprint)
-    blueprint = get_line_art(blueprint)
-    blueprint = color_inversion(blueprint)
-    return inference(prompt, blueprint, num_inference_steps)
-
 if __name__ == "__main__":
+    print(f"Is CUDA available: {torch.cuda.is_available()}")
+    if torch.cuda.is_available():
+        device = "cuda"
+    else:
+        device = "cpu"
+
+    automatic_coloring_pipeline = StableDiffusionReferenceOnlyPipeline.from_pretrained(
+        "AisingioroHao0/stable-diffusion-reference-only-automatic-coloring-0.1.2"
+    ).to(device)
+    automatic_coloring_pipeline.scheduler = UniPCMultistepScheduler.from_config(
+        automatic_coloring_pipeline.scheduler.config
+    )
+
+    segment_model = anime_segmentation.get_model(
+        model_path=huggingface_hub.hf_hub_download("skytnt/anime-seg", "isnetis.ckpt")
+    ).to(device)
+
+    def character_segment(img):
+        if img is None:
+            return None
+        img = anime_segmentation.character_segment(segment_model, img)
+        img = cv2.cvtColor(img, cv2.COLOR_RGBA2RGB)
+        return img
+
+    def color_inversion(img):
+        if img is None:
+            return None
+        return 255 - img
+
+
+    def get_line_art(img):
+        if img is None:
+            return None
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        img = cv2.adaptiveThreshold(
+            img,
+            255,
+            cv2.ADAPTIVE_THRESH_MEAN_C,
+            cv2.THRESH_BINARY,
+            blockSize=5,
+            C=7,
+        )
+        img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+        return img
+
+
+    def inference(prompt, blueprint, num_inference_steps):
+        if prompt is None or blueprint is None:
+            return None
+        return np.array(
+            automatic_coloring_pipeline(
+                prompt=Image.fromarray(prompt),
+                blueprint=Image.fromarray(blueprint),
+                num_inference_steps=num_inference_steps,
+            ).images[0]
+        )
+
+
+    def automatic_coloring(prompt, blueprint, num_inference_steps):
+        if prompt is None or blueprint is None:
+            return None
+        blueprint = color_inversion(blueprint)
+        return inference(prompt, blueprint, num_inference_steps)
+
+
+    def style_transfer(prompt, blueprint, num_inference_steps):
+        if prompt is None or blueprint is None:
+            return None
+        prompt = character_segment(prompt)
+        blueprint = character_segment(blueprint)
+        blueprint = get_line_art(blueprint)
+        blueprint = color_inversion(blueprint)
+        return inference(prompt, blueprint, num_inference_steps)
     with gr.Blocks() as demo:
         gr.Markdown(
             """
