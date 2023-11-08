@@ -1,8 +1,8 @@
 import huggingface_hub
 import gradio as gr
-# from stable_diffusion_reference_only.pipelines.stable_diffusion_reference_only_pipeline import (
-#     StableDiffusionReferenceOnlyPipeline,
-# )
+from stable_diffusion_reference_only.pipelines.stable_diffusion_reference_only_pipeline import (
+    StableDiffusionReferenceOnlyPipeline,
+)
 from anime_segmentation import get_model as get_anime_segmentation_model
 from anime_segmentation import character_segment as anime_character_segment
 from diffusers.schedulers import UniPCMultistepScheduler
@@ -15,7 +15,6 @@ import torch
 if __name__ == "__main__":
     
     print(f"Is CUDA available: {torch.cuda.is_available()}")
-    print(f"CUDA device: {torch.cuda.get_device_name(torch.cuda.current_device())}")
     if torch.cuda.is_available():
         device = "cuda"
     else:
