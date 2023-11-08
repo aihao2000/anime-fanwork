@@ -3,8 +3,8 @@ import gradio as gr
 from stable_diffusion_reference_only.pipelines.stable_diffusion_reference_only_pipeline import (
     StableDiffusionReferenceOnlyPipeline,
 )
-from anime_segmentation import get_model as get_anime_segmentation_model
-from anime_segmentation import character_segment as anime_character_segment
+# from anime_segmentation import get_model as get_anime_segmentation_model
+# from anime_segmentation import character_segment as anime_character_segment
 from diffusers.schedulers import UniPCMultistepScheduler
 from PIL import Image
 import cv2
