@@ -9,8 +9,13 @@ from PIL import Image
 import cv2
 import numpy as np
 import os
+import torch
 
-device = "cpu"
+if torch.cuda.is_available():
+    device = "cuda"
+else:
+    device = "cpu"
+
 automatic_coloring_pipeline = StableDiffusionReferenceOnlyPipeline.from_pretrained(
     "AisingioroHao0/stable-diffusion-reference-only-automatic-coloring-0.1.2"
 ).to(device)
