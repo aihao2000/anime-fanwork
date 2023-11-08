@@ -22,6 +22,8 @@ Code: https://github.com/aihao2000/StableDiffusionReferenceOnly
 
 Model: https://huggingface.co/AisingioroHao0/stable-diffusion-reference-only-automatic-coloring-0.1.2
 
+Paper: https://arxiv.org/abs/2311.02343
+
 |               prompt                |               blueprint                |               result                |
 | :---------------------------------: | :------------------------------------: | :---------------------------------: |
 | ![](./README.assets/3x9_prompt.png) | ![](./README.assets/3x9_blueprint.png) | ![](./README.assets/3x9_result.png) |
