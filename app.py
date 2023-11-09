@@ -11,6 +11,7 @@ import cv2
 import numpy as np
 import os
 import torch
+
 print(f"Is CUDA available: {torch.cuda.is_available()}")
 if torch.cuda.is_available():
     device = "cuda"
@@ -179,4 +180,4 @@ with gr.Blocks() as demo:
             cache_examples=True,
         )
 if __name__ == "__main__":
-    demo.queue(max_size=10).launch()
+    demo.launch()
